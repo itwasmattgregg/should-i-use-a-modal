@@ -8,7 +8,7 @@
 </script>
 
 <h1>Should I use a modal?</h1>
-<button on:click={handleClick}>Open Modal</button>
+<button on:click={handleClick}>Click here to find out</button>
 
 <Modals>
   <div slot="backdrop" class="backdrop" on:click={closeModal} />
