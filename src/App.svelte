@@ -3,7 +3,10 @@
   import Modal from './Modal.svelte';
 
   function handleClick() {
-    openModal(Modal, { title: 'Alert', message: 'This is an alert' });
+    openModal(Modal, {
+      title: 'Ok cool...',
+      message: `...but what if I need to open another modal on top of this one even though I know it&lsquo;s a bad idea?`,
+    });
   }
 </script>
 

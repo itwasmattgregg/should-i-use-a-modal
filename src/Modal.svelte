@@ -1,6 +1,7 @@
 <script>
   import { closeModal, openModal } from 'svelte-modals';
   import Modal from './Modal.svelte';
+  import modals from './modals';
 
   // provided by Modals
   export let isOpen;
@@ -8,19 +9,21 @@
   export let title;
   export let message;
 
+  const randomModal = modals[Math.floor(Math.random() * modals.length)];
+
   function handleClick() {
-    openModal(Modal, { title: 'Alert', message: 'This is an alert' });
+    openModal(Modal, { title: randomModal.title, message: randomModal.body });
   }
 </script>
 
 {#if isOpen}
   <div role="dialog" class="modal">
     <div class="contents">
-      <h2>{title}</h2>
-      <p>{message}</p>
+      <h2>{@html title}</h2>
+      <p>{@html message}</p>
       <div class="actions">
-        <button on:click={handleClick}>OK</button>
-        <button on:click={closeModal}>CANCEL</button>
+        <button on:click={closeModal}>I don't want modals</button>
+        <button on:click={handleClick}>This is fine</button>
       </div>
     </div>
   </div>
@@ -36,6 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 
     /* allow click-through to backdrop */
     pointer-events: none;
@@ -65,6 +69,6 @@
   .actions {
     margin-top: 32px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 </style>
