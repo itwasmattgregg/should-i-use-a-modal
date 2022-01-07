@@ -8,11 +8,18 @@
 
   export let title;
   export let message;
+  export let count = 0;
+
+  const countNext = count + 1;
 
   const randomModal = modals[Math.floor(Math.random() * modals.length)];
 
   function handleClick() {
-    openModal(Modal, { title: randomModal.title, message: randomModal.body });
+    openModal(Modal, {
+      title: randomModal.title,
+      message: randomModal.body,
+      count: countNext,
+    });
   }
 </script>
 
@@ -20,7 +27,7 @@
   <div role="dialog" class="modal">
     <div class="contents">
       <h2>{@html title}</h2>
-      <p>{@html message}</p>
+      <p>{@html message}{count}</p>
       <div class="actions">
         <button on:click={closeModal}>I don't want modals</button>
         <button on:click={handleClick}>This is fine</button>

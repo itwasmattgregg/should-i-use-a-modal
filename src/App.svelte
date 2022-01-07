@@ -1,5 +1,5 @@
 <script>
-  import { Modals, closeModal, openModal } from 'svelte-modals';
+  import { Modals, closeModal, openModal, closeAllModals } from 'svelte-modals';
   import Modal from './Modal.svelte';
 
   function handleClick() {
@@ -8,7 +8,13 @@
       message: `...but what if I need to open another modal on top of this one even though I know it&lsquo;s a bad idea?`,
     });
   }
+
+  function handleKeydown(event) {
+    if (event.key === 'Escape') closeAllModals();
+  }
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <h1>Should I use a modal?</h1>
 <button on:click={handleClick}>Click here to find out</button>
