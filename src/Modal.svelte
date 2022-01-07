@@ -2,6 +2,7 @@
   import { closeModal, openModal } from 'svelte-modals';
   import Modal from './Modal.svelte';
   import modals from './modals';
+  import { Focus } from 'focus-svelte';
 
   // provided by Modals
   export let isOpen;
@@ -24,16 +25,18 @@
 </script>
 
 {#if isOpen}
-  <div role="dialog" class="modal">
-    <div class="contents">
-      <h2>{@html title}</h2>
-      <p>{@html message}{count}</p>
-      <div class="actions">
-        <button on:click={closeModal}>I don't want modals</button>
-        <button on:click={handleClick}>This is fine</button>
+  <Focus enabled>
+    <div role="dialog" class="modal">
+      <div class="contents">
+        <h2>{@html title}</h2>
+        <p>{@html message}{count}</p>
+        <div class="actions">
+          <button on:click={closeModal}>I don't want modals</button>
+          <button on:click={handleClick}>This is fine</button>
+        </div>
       </div>
     </div>
-  </div>
+  </Focus>
 {/if}
 
 <style>
