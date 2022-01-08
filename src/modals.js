@@ -29,4 +29,10 @@ export default [
     cancel: 'Stop important task',
     accept: 'Go faster',
   },
+  {
+    title: 'Another modal?',
+    body: 'Seriously?',
+    cancel: `Ok I\'m done`,
+    accept: 'I want more',
+  },
 ];

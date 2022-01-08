@@ -4,6 +4,7 @@
   export let modal;
   export let onClose;
   export let onOpen;
+  export let tooMany;
 
   const { title, body, cancel, accept } = modal;
 </script>
@@ -25,6 +26,11 @@
           on:click={onOpen}>{@html accept}</button
         >
       </div>
+      {#if tooMany}
+        <footer class="mt-4">
+          <p>Please avoid using modals when possible.</p>
+        </footer>
+      {/if}
     </div>
   </div>
 </Focus>

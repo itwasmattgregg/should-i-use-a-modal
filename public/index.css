@@ -424,11 +424,31 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.-mx-2 {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+.-my-2 {
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+}
 .mb-8 {
   margin-bottom: 2rem;
 }
 .mb-4 {
   margin-bottom: 1rem;
+}
+.-mb-4 {
+  margin-bottom: -1rem;
+}
+.-mb-8 {
+  margin-bottom: -2rem;
+}
+.mt-8 {
+  margin-top: 2rem;
+}
+.mt-4 {
+  margin-top: 1rem;
 }
 .flex {
   display: flex;
@@ -438,6 +458,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .h-screen {
   height: 100vh;
+}
+.h-full {
+  height: 100%;
 }
 .items-center {
   align-items: center;
