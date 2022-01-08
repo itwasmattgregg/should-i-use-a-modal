@@ -1,45 +1,45 @@
 <script>
-  import { closeModal, openModal } from 'svelte-modals';
-  import Modal from './Modal.svelte';
-  import modals from './modals';
   import { Focus } from 'focus-svelte';
 
-  // provided by Modals
-  export let isOpen;
+  export let modal;
+  export let onClose;
+  export let onOpen;
 
-  export let title;
-  export let message;
-  export let count = 0;
-
-  const countNext = count + 1;
-
-  const randomModal = modals[Math.floor(Math.random() * modals.length)];
-
-  function handleClick() {
-    openModal(Modal, {
-      title: randomModal.title,
-      message: randomModal.body,
-      count: countNext,
-    });
-  }
+  const { title, body, cancel, accept } = modal;
 </script>
 
-{#if isOpen}
-  <Focus enabled>
-    <div role="dialog" class="modal">
-      <div class="contents">
-        <h2>{@html title}</h2>
-        <p>{@html message}{count}</p>
-        <div class="actions">
-          <button on:click={closeModal}>I don't want modals</button>
-          <button on:click={handleClick}>This is fine</button>
-        </div>
+<Focus enabled>
+  <div role="dialog" class="modal">
+    <div class="contents rounded-lg shadow-xl">
+      <h2 class="text-2xl mb-4">{@html title}</h2>
+      <p>{@html body}</p>
+      <div class="actions">
+        <button
+          class="p-4 py-2 rounded-lg border border-yellow-700 text-yellow-700 
+				font-bold shadow-lg "
+          on:click={onClose}>{@html cancel}</button
+        >
+        <button
+          class="p-4 py-3 rounded-lg bg-yellow-700 text-white 
+				font-bold border-none shadow-lg hover:bg-yellow-800 focus:bg-yellow-800"
+          on:click={onOpen}>{@html accept}</button
+        >
       </div>
     </div>
-  </Focus>
-{/if}
+  </div>
+</Focus>
+
+<div class="backdrop" on:click={onClose} />
 
 <style>
+  .backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
   .modal {
     position: fixed;
     top: 0;
@@ -56,29 +56,20 @@
   }
 
   .contents {
-    min-width: 240px;
-    border-radius: 6px;
-    padding: 16px;
+    width: 400px;
+    padding: 24px;
     background: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     pointer-events: auto;
-  }
-
-  h2 {
-    text-align: center;
-    font-size: 24px;
-  }
-
-  p {
-    text-align: center;
-    margin-top: 16px;
+    max-width: 100%;
   }
 
   .actions {
     margin-top: 32px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 </style>
