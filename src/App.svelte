@@ -43,8 +43,9 @@
     <button
       class="p-4 rounded-lg bg-yellow-700 text-white 
 				font-bold border-none shadow-lg hover:bg-yellow-800 focus:bg-yellow-800"
-      on:click={handleClick}>Click here to find out</button
-    >
+      on:click={handleClick}>
+      Click here to find out
+    </button>
   </div>
 </div>
 <footer class="text-center">
